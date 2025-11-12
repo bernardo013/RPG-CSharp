@@ -19,13 +19,7 @@
                 Mago Gandalf = new Mago("Gandalf", 100, 15, 5);
                 Arqueiro Oliver = new Arqueiro("Oliver", 120, 12, 5);
                 Guerreiro Euclides = new Guerreiro("Euclides", 150, 10, 10);
-                Gandalf.ExibirStatus();
-
-
-            
-
-
-            
+                
         
             }
         }

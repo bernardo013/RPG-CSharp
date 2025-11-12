@@ -9,20 +9,34 @@
             public class Guerreiro : Personagem
         {
             public int DanoEspecial { get; set; }
+            public int DanoCausado { get; set; }
 
-            //Método Construtor
-            public Guerreiro(string Nome, int Vida, int Ataque, int Defesa) 
+        //Método Construtor
+        public Guerreiro(string Nome, int Vida, int Ataque, int Defesa) 
                 : base(Nome, Vida, Ataque, Defesa) { }
 
             //Métodos sobrescritos da classe base Personagem
             public override void Atacar(Personagem alvo)
             {
-                base.Atacar(alvo);
+            int danoCausado = this.Ataque;
+
+
+            if (danoCausado < 0)
+            {
+                danoCausado = 0;
+                Console.WriteLine($"{Nome} atacou {alvo.Nome} causando {danoCausado} de dano!");
+            }
+            else
+            {
+                Console.WriteLine($"{Nome} atacou {alvo.Nome} causando {danoCausado} de dano!");
+                alvo.ReceberDano(danoCausado);
             }
 
-            public override void ReceberDano(int danoRecebido)
+        }
+
+        public override void ReceberDano(int DanoRecebido)
             {
-                base.ReceberDano(danoRecebido);
+                base.ReceberDano(DanoRecebido);
             }
 
             //Método Especial do Guerreiro: Golpe Poderoso ( dobro de dano )

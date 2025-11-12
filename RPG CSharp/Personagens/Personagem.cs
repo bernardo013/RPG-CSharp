@@ -1,4 +1,5 @@
-﻿    using System;
+﻿using RPG_CSharp.Interfaces;
+using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -6,8 +7,8 @@
 
     namespace RPG_CSharp.Personagens
     {
-        public abstract class Personagem
-        {
+        public abstract class Personagem : IAtacavel
+    {
             public string Nome { get; set; }
             public int Vida { get; set; }
             public int Ataque { get; set; }
@@ -23,33 +24,16 @@
             }
 
             //Método de Ataque básico. // Deve ser sobrescrito nas classes filhas.
-            public virtual void Atacar(Personagem alvo)
-            {
-
-                int danoCausado = this.Ataque;
-
-
-                if (danoCausado < 0)
-                {
-                    danoCausado = 0;
-                    Console.WriteLine($"{Nome} atacou {alvo.Nome} causando {danoCausado} de dano!");
-                }
-                else
-                {
-                    Console.WriteLine($"{Nome} atacou {alvo.Nome} causando {danoCausado} de dano!");
-                    alvo.ReceberDano(danoCausado);
-                }
-
-            }
+            public abstract void Atacar(Personagem alvo);
+            
 
             //Método de receber dano(chamado pelo método Atacar() para calcular dano recebido.
             // Deve ser sobrescrito nas classes filhas.
-            public virtual void ReceberDano(int danoRecebido)
+            public virtual void ReceberDano(int DanoRecebido)
             {
 
-
-                Vida -= danoRecebido; // vida = vida - danoRecebido.
-                Defesa -= 2; // Reduz a defesa em 1 a cada ataque recebido.
+            Vida -= DanoRecebido; // esta variável "DanoRecebido" vem do método atacar da classe filha que faz o calculo de dano.
+            Defesa -= 2; // Reduz a defesa em 1 a cada ataque recebido.
 
 
                 if (Vida < 0)
@@ -61,15 +45,13 @@
                     Defesa = 0;
                 }
 
-                Console.WriteLine($"{Nome} recebeu {danoRecebido} de dano! Vida restante: {Vida}");
+                Console.WriteLine($"{Nome} recebeu {DanoRecebido} de dano! Vida restante: {Vida}");
 
                 if (Vida == 0)
                 {
                     Console.WriteLine($"{Nome} foi derrotado!");
                 }
             }
-
-
 
 
 

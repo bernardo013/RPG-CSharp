@@ -9,19 +9,33 @@
         public class Arqueiro : Personagem
         {
             public int DanoEspecial { get; set; }
+            public int DanoCausado { get; set; }
 
-            //Método Construtor
-            public Arqueiro(string Nome, int Vida, int Ataque, int Defesa)
+        //Método Construtor
+        public Arqueiro(string Nome, int Vida, int Ataque, int Defesa)
                 : base(Nome, Vida, Ataque, Defesa) { }
 
             //Métodos sobrescritos da classe base Personagem
             public override void Atacar(Personagem alvo)
             {
-                base.Atacar(alvo);
-            }
-            public override void ReceberDano(int danoRecebido)
+            int danoCausado = this.Ataque;
+
+
+            if (danoCausado < 0)
             {
-                base.ReceberDano(danoRecebido);
+                danoCausado = 0;
+                Console.WriteLine($"{Nome} atacou {alvo.Nome} causando {danoCausado} de dano!");
+            }
+            else
+            {
+                Console.WriteLine($"{Nome} atacou {alvo.Nome} causando {danoCausado} de dano!");
+                alvo.ReceberDano(danoCausado);
+            }
+
+        }
+        public override void ReceberDano(int DanoRecebido)
+            {
+                base.ReceberDano(DanoRecebido);
             }
 
             //Método especial do Arqueiro: Atira uma chuva de flechas.
