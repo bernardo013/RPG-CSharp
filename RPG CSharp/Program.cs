@@ -18,9 +18,9 @@ using System.Text;
         //Criação do Método batalha
         public static void Batalha()
         {
-            Mago mago = new Mago("Mago - Gandalf", 100, 15, 5);
-            Arqueiro arqueiro = new Arqueiro("Arqueiro - Oliver", 120, 12, 5);
-            Guerreiro guerreiro = new Guerreiro("Guerreiro - Euclides", 150, 10, 10);
+            Mago mago = new Mago("Mago - Gandalf", 75, 30, 8);
+            Arqueiro arqueiro = new Arqueiro("Arqueiro - Oliver", 85, 15, 10);
+            Guerreiro guerreiro = new Guerreiro("Guerreiro - Euclides", 100, 20, 15);
 
             Personagem jogador1 = null;
             Personagem jogador2 = null;
@@ -90,7 +90,7 @@ using System.Text;
                 if (acao2 == 1)
                 {
                     jogador2.Atacar(jogador1);
-                    
+
                 }
                 else
                 {
